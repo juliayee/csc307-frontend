@@ -14,17 +14,23 @@ function MyApp() {
  }, [] );
 
  async function makePostCall(person){
-  try {
-     const response = await axios.post('http://localhost:5000/users', person);
-     return response;
-  }
-  catch (error) {
-     console.log(error);
-     return false;
-  }
-}
+   try {
+      const response = await axios.post('http://localhost:5000/users', person);
+      return response;
+   }
+   catch (error) {
+      console.log(error);
+      return false;
+   }
+ }
 
   function removeOneCharacter (index) {
+   const id = characters[index].id;
+   const response = axios.delete('http://localhost:5000/users/' + id);
+   if(response && response.status === 204){
+      console.log('Successfully deleted.');
+   }
+
     const updated = characters.filter((character, i) => {
         return i !== index
       });
