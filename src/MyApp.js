@@ -47,6 +47,7 @@ function updateList(person) {
   async function fetchAll(){
     try {
        const response = await axios.get('http://localhost:5000/users');
+       console.log(response.data);
        return response.data.users_list;     
     }
     catch (error){
